@@ -15,8 +15,8 @@ set -goq @themepack-status-left-area-right-format "#I:#P"
 set -goq @themepack-status-right-area-left-format "%H:%M:%S"
 set -goq @themepack-status-right-area-middle-format "%d-%b-%y"
 set -goq @themepack-status-right-area-right-format "#H"
-set -goq @themepack-window-status-current-format "#I:#W#F"
-set -goq @themepack-window-status-format "#I:#W#F"
+set -goq @themepack-window-status-current-format "#I:#W"
+set -goq @themepack-window-status-format "#I:#W"
 
 # Customizable prefixes and suffixes for @themepack-* format options
 set -goq @themepack-status-left-area-left-prefix ""
