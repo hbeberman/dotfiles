@@ -8,3 +8,7 @@ function syncNow() {
 }
 
 syncNow;
+
+git config --global user.email "henry.beberman@microsoft.com"
+git config --global user.name "Henry Beberman"
+git config --global core.editor "vim"
