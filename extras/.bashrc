@@ -41,6 +41,16 @@ byoi(){
 echo "--aks-custom-headers AKSHTTPCustomFeatures=Microsoft.ContainerService/UseCustomizedOSImage,OSImageSubscriptionID=109a5e88-712a-48ae-9078-9ca8b3c81345,OSImageResourceGroup=AKS-CBLMariner,OSImageGallery=AKSCBLMariner,OSImageName=V2gen2,OSImageVersion=$1"
 }
 
+fssh(){
+  local ip_address=$1
+  ssh azureuser@$ip_address
+  if [ $? -ne 0 ]; then
+    echo "SSH connection failed, removing known host and trying again..."
+    ssh-keygen -f "/home/$(whoami)/.ssh/known_hosts" -R "$ip_address"
+    ssh azureuser@$ip_address
+  fi
+}
+
 export AZL=MicrosoftCBLMariner:cbl-mariner:cbl-mariner-2-gen2:latest
 
 export AZCOPY_AUTO_LOGIN_TYPE=AZCLI
