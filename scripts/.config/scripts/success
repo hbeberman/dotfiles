@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Function to set the background to color 2 (green)
+change_color() {
+    tput setab 2  # Set background to green
+    tput clear    # Clear screen to apply the color
+}
+
+# Enable mouse tracking and save screen state
+tput smcup   # Save current screen state
+tput civis   # Hide cursor
+tput smkx    # Enable application mode
+printf "\e[?1000h" # Enable basic mouse click tracking
+
+trap 'cleanup' SIGINT SIGTERM  # Ensure cleanup on termination
+
+cleanup() {
+    # Restore terminal settings and previous screen content
+    printf "\e[?1000l" # Disable mouse reporting
+    tput rmkx
+    tput cnorm
+    tput rmcup  # Restore previous screen content
+    exit
+}
+
+change_color  # Set the initial color
+
+while true; do
+    IFS= read -rsn 6 input  # Capture mouse click events properly
+    if [[ $input == $'\e[M'* ]]; then  # Detect mouse click event
+        break
+    fi
+done
+
+cleanup
+
