@@ -154,7 +154,7 @@ label:focus {
 }
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
+    background-color: rgba(0x6C,0x47,0x91,0.4);
     color: #2d3436;
 }
 
@@ -196,9 +196,13 @@ label:focus {
 
 #tray, #idle_inhibitor, #cpu,#memory,#disk,#clock,#pulseaudio  {
     background-color: rgba(0, 0, 0, 0.0);
-    color: #ffffff;
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
     border-radius: 8px;
     padding: 0px 8px;
+}
+
+#tray > * {
+  opacity: 0.4
 }
 
 #window {
