@@ -1,0 +1,7 @@
+[Unit]
+Description=Randomize wallpaper with waypaper
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/waypaper --random --folder %h/.config/wallpapers/space/
+

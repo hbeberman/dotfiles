@@ -1,0 +1,26 @@
+# Use dmenu mode (more compact)
+dmenu = true
+
+# Show applications
+show = drun
+
+# Number of lines (rows) to display
+lines = 10
+
+# Case-insensitive search
+insensitive = true
+
+# Show search prompt
+prompt = "Search: "
+
+# Location on screen (center = 0,0; top-left = 1,1; bottom-right = 2,2)
+location = center
+
+# Width of the window (percentage of screen width)
+width = 40%
+
+allow_images = true
+hide_scroll = true
+image_size=20
+
+close_on_focus_loss=true

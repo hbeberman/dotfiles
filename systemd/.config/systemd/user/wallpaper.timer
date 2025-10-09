@@ -1,0 +1,12 @@
+[Unit]
+Description=Timer to randomize wallpaper every minute
+
+[Timer]
+OnBootSec=5s
+OnUnitActiveSec=600s
+AccuracySec=1s
+Unit=wallpaper.service
+
+[Install]
+WantedBy=timers.target
+

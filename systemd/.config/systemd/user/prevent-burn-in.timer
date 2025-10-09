@@ -1,0 +1,11 @@
+[Unit]
+Description=Run prevent-burn-in every 20 minutes
+
+[Timer]
+OnBootSec=5m
+OnUnitActiveSec=20m
+Unit=prevent-burn-in.service
+
+[Install]
+WantedBy=timers.target
+

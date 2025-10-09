@@ -1,0 +1,11 @@
+[Unit]
+Description=Run swww-rand every minute
+
+[Timer]
+OnUnitActiveSec=60
+OnBootSec=1min
+Unit=swww-rand.service
+
+[Install]
+WantedBy=timers.target
+

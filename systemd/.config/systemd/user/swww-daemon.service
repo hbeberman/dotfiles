@@ -1,0 +1,15 @@
+[Unit]
+Description=Swww Daemon (Wayland wallpaper daemon)
+Documentation=https://github.com/LGFae/swww
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/swww-daemon
+Restart=on-failure
+RestartSec=2
+Environment=XDG_SESSION_TYPE=wayland
+
+[Install]
+WantedBy=default.target
+

@@ -1,0 +1,7 @@
+[Unit]
+Description=Set random wallpaper with swww
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/scripts/swww-rand.sh
+

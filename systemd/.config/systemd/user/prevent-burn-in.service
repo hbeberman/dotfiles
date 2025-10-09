@@ -1,0 +1,7 @@
+[Unit]
+Description=Prevent burn-in script
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/scripts/prevent-burn-in.sh
+
