@@ -160,7 +160,8 @@ label:focus {
 
 #pulseaudio:hover,
 #clock:hover,
-#tray:hover {
+#tray:hover,
+#custom-overview:hover{
     background-color: rgba(0x6C,0x47,0x91,0.4);
 }
 
@@ -178,23 +179,31 @@ label:focus {
     background-color: #eb4d4b;
 }
 
+#custom-overview {
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
+    border-radius: 8px;
+    padding: 8px 8px;
+    font-size: 12px;
+}
+
 #custom-notification {
     background-color: rgba(0, 0, 0, 0.0);
-    color: #ffffff;
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
     min-width: 100px;
 }
 
 #custom-notification.unread {
     background-color: rgba(0x78, 0x60, 0xA0, 1.0);
-    color: #ffffff;
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
 #custom-notification.none {
-    color: #ffffff;
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
 
-#tray, #idle_inhibitor, #cpu,#memory,#disk,#clock,#pulseaudio  {
+#tray,#idle_inhibitor,#cpu,#memory,#disk,#clock,#pulseaudio  {
     background-color: rgba(0, 0, 0, 0.0);
     color: rgba(0xFF, 0xFF, 0xFF, 0.4);
     border-radius: 8px;

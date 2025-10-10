@@ -10,6 +10,7 @@
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/submap",
+        "custom/overview",
         "custom/media"
     ],
     "modules-center": [
@@ -41,6 +42,12 @@
     //         "default": ""
     //     }
     // },
+    "custom/overview": {
+        "format": "🝶",
+        "escape": true,
+        "tooltip": false,
+        "on-click": "niri msg action open-overview"
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
