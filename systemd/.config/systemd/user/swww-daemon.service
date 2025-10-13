@@ -4,15 +4,15 @@ Documentation=https://github.com/LGFae/swww
 After=niri.service
 Wants=niri.service
 PartOf=niri.service
-ConditionPathExistsGlob=/run/user/%U/wayland-*
 
 [Service]
 Type=simple
-# Inline single-line wait loop
+# Wait up to 30s for any Wayland socket to appear
 ExecStartPre=/bin/bash -c 'for i in {1..300}; do SOCKET=$(find /run/user/$(id -u) -maxdepth 1 -type s -name "wayland-*"); [ -n "$SOCKET" ] && echo "Found socket: $SOCKET" && exit 0; sleep 0.1; done; echo "No Wayland socket found after timeout" >&2; exit 1'
 ExecStart=/usr/bin/swww-daemon
 Restart=always
-RestartSec=0
+TimeoutStopSec=5
+RestartSec=2
 
 Environment=XDG_SESSION_TYPE=wayland
 Environment=XDG_RUNTIME_DIR=/run/user/%U
