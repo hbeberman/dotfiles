@@ -1,0 +1,31 @@
+
+#!/bin/bash
+set -euo pipefail
+
+FILE="$1"
+TITLE="Picture Watcher"
+
+if [[ -z "$FILE" ]]; then
+    echo "Usage: $0 /path/to/image"
+    exit 1
+fi
+
+# Get ID of the currently focused workspace
+WS_ID=$(niri msg -j workspaces | jq -r '.[] | select(.is_focused) | .id')
+
+launch_feh() {
+    # Focus the workspace again before spawning (so Niri places window there)
+    niri msg action focus-workspace --id "$WS_ID" >/dev/null 2>&1 || true
+    feh --scale-down --auto-zoom --title "$TITLE" "$FILE" &
+    FEH_PID=$!
+}
+
+launch_feh
+
+# Watch for file changes and relaunch feh on same workspace
+while inotifywait -e close_write,move_self,delete_self "$FILE"; do
+    kill "$FEH_PID" 2>/dev/null || true
+    sleep 0.1
+    launch_feh
+done
+
