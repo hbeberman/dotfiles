@@ -1,6 +1,8 @@
 * {
     font-family: "PowerlineSymbols";
     font-size: 11pt;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
 window#waybar {
@@ -94,8 +96,9 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
     padding: 0 10px;
-    color: #ffffff;
 }
 
 #window,
@@ -194,7 +197,7 @@ label:focus {
 }
 
 #custom-notification.unread {
-    background-color: rgba(0x78, 0x60, 0xA0, 1.0);
+    background-color: rgba(0x78, 0x60, 0xA0, 0.5);
     color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
@@ -232,14 +235,15 @@ label:focus {
 }
 
 #custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
     min-width: 100px;
 }
 
 
 #custom-media.custom-spotify {
-    background-color: #66cc99;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
 #custom-media.custom-vlc {
@@ -249,20 +253,23 @@ label:focus {
 
 
 #mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
 #mpd.disconnected {
-    background-color: #f53c3c;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
 #mpd.stopped {
-    background-color: #90b1b1;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
 #mpd.paused {
-    background-color: #51a37a;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
 #language {
