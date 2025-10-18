@@ -373,6 +373,11 @@ binds {
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
     Shift+XF86AudioNext  allow-when-locked=true { spawn-sh "playerctl previous"; }
 
+    // Push to talk bindings
+    // Dependent on https://github.com/YaLTeR/niri/pull/2456
+    KP_Insert { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0"; }
+    KP_Insert release=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1"; }
+
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
     // but you need to manually put each argument in separate "" quotes.
@@ -634,10 +639,12 @@ gestures {
 // VRR
 window-rule {
   match app-id=r#"^steam_app_.*"#
+  open-on-output "DP-1"
   variable-refresh-rate true
   open-maximized true
   open-fullscreen true
   open-focused true
+
 }
 
 
