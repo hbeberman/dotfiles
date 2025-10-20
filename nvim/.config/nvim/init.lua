@@ -4,6 +4,9 @@
 -- Spacebar leader
 vim.g.mapleader = " "
 
+-- Set foldmethod to {{{
+vim.o.foldmethod = "marker"
+
 -- Line numbers
 vim.o.number = true
 
