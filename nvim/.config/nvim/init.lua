@@ -4,8 +4,11 @@
 -- Spacebar leader
 vim.g.mapleader = " "
 
--- Set foldmethod to {{{
+-- Set foldmethod
 vim.o.foldmethod = "marker"
+
+-- Disable auto comment continuation on newlines
+vim.opt.formatoptions:remove({ "c", "r", "o" })
 
 -- Line numbers
 vim.o.number = true
@@ -37,6 +40,26 @@ vim.cmd [[
   hi Normal guibg=NONE ctermbg=NONE
   hi NormalFloat guibg=NONE ctermbg=NONE
 ]]
+
+-- Automatically center on last line when reopening
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+      vim.cmd("normal! zz") -- center the cursor line
+    end
+  end,
+})
+
+-- Always open files with all folds expanded
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
+  callback = function()
+    -- Set a very high fold level so everything is unfolded
+    vim.cmd("normal! zR")
+  end,
+})
 
 
 -- Setup the pckr nvim package manager  
@@ -176,3 +199,69 @@ vim.diagnostic.config({
   virtual_text = false,  -- Disable inline diagnostics
   virtual_lines = true,  -- Enable virtual_lines
 })
+
+-- GameZoea test creation command
+vim.api.nvim_create_user_command("GBtest", function(opts)
+  local name = opts.args
+  if name == "" then
+    print("Usage: :GBtest <name>")
+    return
+  end
+
+  -- Template for the test block
+  local lines = {
+    string.format("// {{{ test %s", name),
+    '#[test]',
+    '#[ignore = "TODO"]',
+    string.format("fn execute_%s() {", name),
+    '    const ROM: &[u8] = gbasm! {r#"',
+    '    "#};',
+    '    let mut cpu = Cpu::init_dmg(ROM);',
+    '    cpu.mtick(200);',
+    '    assert_eq!(cpu.a(), 0x00);',
+    "}",
+    "// }}}",
+    "", -- ← add a blank line after the block
+  }
+
+  -- Insert after the current line
+  local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
+  vim.api.nvim_buf_set_lines(0, row, row, false, lines)
+
+  -- Move cursor to just after the inserted block
+  vim.api.nvim_win_set_cursor(0, { row + #lines, 0 })
+end, { nargs = 1 })
+
+
+-- GameZoea opcode creation command
+vim.api.nvim_create_user_command("GBopcode", function(opts)
+  local name = opts.args
+  if name == "" then
+    print("Usage: :GBopcode <name>")
+    return
+  end
+
+  -- Template for the opcode function block (with TODO line)
+  local lines = {
+    string.format("// {{{ opcode %s", name),
+    string.format("pub fn %s(&mut self) {", name),
+    "    match self.mc {",
+    "        M1 => {",
+    "            self.fetch_next();",
+    '            todo!("Opcode {} unimplemented", function!());',
+    "        }",
+    "        M0 => self.set_mc(M2),",
+    '        _ => panic!("Invalid mc in {}: {:?}", function!(), self.mc),',
+    "    }",
+    "}",
+    "// }}}",
+    "", -- blank line after
+  }
+
+  -- Insert after current line
+  local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
+  vim.api.nvim_buf_set_lines(0, row, row, false, lines)
+
+  -- Move cursor to after the inserted block
+  vim.api.nvim_win_set_cursor(0, { row + #lines, 0 })
+end, { nargs = 1 })
