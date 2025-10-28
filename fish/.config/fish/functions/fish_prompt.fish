@@ -1,10 +1,10 @@
 function fish_prompt
     # Colors
     set -l grey    (set_color -o 949494)
-    set -l blue    (set_color -o 00afff)
-    set -l jupiter (set_color -o D88C3E)
-    set -l neptune (set_color -o 00afff)
-    set -l white   (set_color -o ffffff)
+    set -l neptune (set_color -o 00AFFF)
+    set -l jupiter (set_color -o A85425)
+    set -l demeter (set_color -o EDDA9F)
+    set -l white   (set_color -o FFFFFF)
     set -l reset   (set_color normal)
 
     # Cache hostname and delim color once
@@ -21,6 +21,8 @@ function fish_prompt
                 set -g __delim_col $neptune
             case jupiter
                 set -g __delim_col $jupiter
+            case demeter
+                set -g __delim_col $demeter
             case '*'
                 set -g __delim_col $white
         end
