@@ -246,7 +246,8 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+//spawn-at-startup "waybar"
+spawn-sh-at-startup "env > /tmp/niri_env.txt"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -375,6 +376,11 @@ binds {
 
     // Push to talk bindings
     // Dependent on https://github.com/YaLTeR/niri/pull/2456
+    // TODO: Is there a way to express an ANY mod key?
+    Shift+KP_Insert { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0"; }
+    Shift+KP_Insert release=true allow-invalidation=false { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1"; }
+    Control+KP_Insert { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0"; }
+    Control+KP_Insert release=true allow-invalidation=false { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1"; }
     KP_Insert { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0"; }
     KP_Insert release=true allow-invalidation=false { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1"; }
 
