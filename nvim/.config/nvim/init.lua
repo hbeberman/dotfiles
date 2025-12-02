@@ -4,8 +4,16 @@
 -- Spacebar leader
 vim.g.mapleader = " "
 
+-- Scrolloff
+vim.o.scrolloff = 3
+
 -- Set foldmethod
-vim.o.foldmethod = "marker"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = false
+vim.opt.foldnestmax = 2
 
 -- Disable auto comment continuation on newlines
 vim.opt.formatoptions:remove({ "c", "r", "o" })
@@ -210,17 +218,15 @@ vim.api.nvim_create_user_command("GBtest", function(opts)
 
   -- Template for the test block
   local lines = {
-    string.format("// {{{ test %s", name),
     '#[test]',
     '#[ignore = "TODO"]',
-    string.format("fn execute_%s() {", name),
+    string.format("fn %s() {", name),
     '    const ROM: &[u8] = gbasm! {r#"',
     '    "#};',
-    '    let mut cpu = Cpu::init_dmg(ROM);',
-    '    cpu.mtick(200);',
-    '    assert_eq!(cpu.a(), 0x00);',
+    '    let mut gb = Gameboy::headless_dmg(ROM);',
+    '    gb.step(20000);',
+    '    assert_hex_eq!(gb.cpu.a(), 0x00);',
     "}",
-    "// }}}",
     "", -- ← add a blank line after the block
   }
 
