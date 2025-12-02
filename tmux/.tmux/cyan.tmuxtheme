@@ -147,10 +147,15 @@ set -gF  status-style "fg=#{@theme-status-fg},bg=#{@theme-status-bg}"
 set -gwF clock-mode-colour "#{@theme-clock-mode-colour}"
 set -gwF clock-mode-style "#{@theme-clock-mode-style}"
 set -gwF mode-style "fg=#{@theme-mode-fg},bg=#{@theme-mode-bg}"
-set -gwF pane-active-border-style "fg=#{@theme-pane-active-border-fg},bg=#{@theme-pane-active-border-bg}"
-set -gwF pane-border-style "fg=#{@theme-pane-border-fg},bg=#{@theme-pane-border-bg}"
+# Pane border styles set below with transparency
 set -gwF window-status-activity-style "fg=#{@theme-window-status-activity-fg},bg=#{@theme-window-status-activity-bg}"
 set -gwF window-status-current-format "#{@theme-window-status-current-format}"
 set -gwF window-status-current-style "fg=#{@theme-window-status-current-fg},bg=#{@theme-window-status-current-bg}"
 set -gwF window-status-format "#{@theme-window-status-format}"
 set -gwF window-status-separator "#{@theme-window-status-separator}"
+
+# Translucent pane borders
+set -g pane-border-style "fg=colour238,bg=default"
+set -g pane-active-border-style "fg=colour39,bg=default"
+set -g pane-border-lines single
+set -g pane-border-status off
