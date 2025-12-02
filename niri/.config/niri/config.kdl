@@ -402,6 +402,8 @@ binds {
 
     Mod+Q repeat=false { close-window; }
 
+    Alt+Tab { focus-window-previous; }
+
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
@@ -458,6 +460,7 @@ binds {
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
     // ...
 
+
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
     Mod+U              { focus-workspace-down; }
@@ -486,6 +489,9 @@ binds {
     Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up-under-mouse; }
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+//    Ctrl+WheelScrollUp   cooldown-ms=150 { spawn-sh "$HOME/.config/niri/scripts/steam_wheel_arrows.sh up"; }
+//    Ctrl+WheelScrollDown cooldown-ms=150 { spawn-sh "$HOME/.config/niri/scripts/steam_wheel_arrows.sh down"; }
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
@@ -652,6 +658,5 @@ window-rule {
   open-focused true
 
 }
-
 
 
