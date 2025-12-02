@@ -11,7 +11,8 @@
         "hyprland/workspaces",
         "hyprland/submap",
         "custom/overview",
-        "custom/media"
+        "custom/media",
+        "custom/notification"
     ],
     "modules-center": [
         "hyprland/window"
@@ -19,7 +20,6 @@
     "modules-right": [
         "mpd",
         "mpris",
-        "custom/notification",
         "pulseaudio",
         "clock",
         "idle_inhibitor",
