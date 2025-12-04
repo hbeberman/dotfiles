@@ -357,6 +357,8 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+W hotkey-overlay-title="Run an Application: zen browser" { spawn-sh "flatpak run app.zen_browser.zen"; }
+    Mod+P hotkey-overlay-title="Swap the wallpaper" { spawn-sh "/home/henry/.config/scripts/swww-rand.sh"; }
+    Mod+C hotkey-overlay-title="Open a chatgpt session" { spawn-sh "/home/henry/.config/scripts/chatgpt.sh"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -571,7 +573,7 @@ binds {
     // Makes the column "fill the rest of the space".
     Mod+Ctrl+F { expand-column-to-available-width; }
 
-    Mod+C { center-column; }
+    //Mod+C { center-column; }
 
     // Center all fully visible columns on screen.
     Mod+Ctrl+C { center-visible-columns; }
