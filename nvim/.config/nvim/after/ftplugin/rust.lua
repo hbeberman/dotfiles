@@ -17,12 +17,4 @@ vim.keymap.set(
   end,
   { silent = true, buffer = bufnr }
 )
--- Toggle diagnostic display (virtual_lines)
-vim.keymap.set('n', '<leader>e', function()
-  local current = vim.diagnostic.config()
-  vim.diagnostic.config({
-    virtual_text = false,  -- Always keep virtual_text off
-    virtual_lines = not current.virtual_lines,
-  })
-end, { desc = 'Toggle diagnostic virtual_lines' })
 

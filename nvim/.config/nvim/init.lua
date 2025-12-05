@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
 })
 
 
--- Setup the pckr nvim package manager  
+-- Setup the pckr nvim package manager
 local function bootstrap_pckr()
   local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
 
@@ -98,10 +98,13 @@ require('pckr').add{
   "mfussenegger/nvim-dap",
   "nvim-treesitter/nvim-treesitter",
   "ntpeters/vim-better-whitespace",
+  "ziglang/zig.vim",
 }
 
 -- Mason Setup
-require("mason").setup({
+local mason_ok, mason = pcall(require, "mason")
+if mason_ok then
+  mason.setup({
     ui = {
         icons = {
             package_installed = "",
@@ -109,12 +112,17 @@ require("mason").setup({
             package_uninstalled = "",
         },
     }
-})
+  })
+end
+
 -- Configure mason-lspconfig but DON'T auto-setup servers
 -- We'll handle rust-analyzer manually via rustaceanvim
-require("mason-lspconfig").setup({
-  automatic_installation = false,
-})
+local mason_lsp_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if mason_lsp_ok then
+  mason_lspconfig.setup({
+    automatic_installation = false,
+  })
+end
 
 -- Make trailing whitespace very apparent
 vim.g.better_whitespace_enabled = 1
@@ -186,35 +194,113 @@ vim.cmd [[
 ]]
 
 
+-- 🦎 Zig Language Server (zls) configuration
+-- Disable zig.vim conflicting settings
+vim.g.zig_fmt_parse_errors = 0
+vim.g.zig_fmt_autosave = 0
+
+-- Setup zls using vim.lsp.config (nvim 0.11+)
+if vim.lsp.config then
+  -- Define zls configuration
+  vim.lsp.config.zls = {
+    cmd = { 'zls' },  -- will use zls from PATH
+    filetypes = { 'zig', 'zon' },
+    root_markers = { 'zls.json', '.git', 'build.zig' },
+    -- settings = {
+    --   zls = {
+    --     zig_exe_path = '/path/to/zig'  -- omit if zig is in PATH
+    --   }
+    -- }
+  }
+
+  -- Enable zls globally
+  vim.lsp.enable('zls')
+
+  -- Format on save for Zig files
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = {"*.zig", "*.zon"},
+    callback = function()
+      vim.lsp.buf.format()
+    end
+  })
+else
+  -- Fallback to old lspconfig API for older nvim versions
+  local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
+  if lspconfig_ok then
+    lspconfig.zls.setup({
+      -- cmd will be omitted if zls is in PATH, otherwise specify: { '/path/to/zls' }
+      -- settings = {
+      --   zls = {
+      --     zig_exe_path = '/path/to/zig'  -- omit if zig is in PATH
+      --   }
+      -- }
+    })
+
+    -- Format on save for Zig files
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      pattern = {"*.zig", "*.zon"},
+      callback = function()
+        vim.lsp.buf.format()
+      end
+    })
+  end
+end
+
+
 -- 🌲 Tree-sitter configuration
-require('nvim-treesitter.configs').setup {
-  -- Parsers to install automatically
-  ensure_installed = {
-    "rust",
-    "lua",
-    "vim",
-    "bash",
-    "toml",
-    "json",
-    "yaml",
-    "markdown",
-  },
+local treesitter_ok, treesitter_configs = pcall(require, 'nvim-treesitter.configs')
+if treesitter_ok then
+  treesitter_configs.setup {
+    -- Parsers to install automatically
+    ensure_installed = {
+      "rust",
+      "zig",
+      "lua",
+      "vim",
+      "bash",
+      "toml",
+      "json",
+      "yaml",
+      "markdown",
+    },
 
-  sync_install = false,  -- install parsers asynchronously
+    sync_install = false,  -- install parsers asynchronously
 
-  highlight = {
-    enable = true,                       -- enable highlighting
-    additional_vim_regex_highlighting = false,  -- avoid duplicate highlights
-  },
+    highlight = {
+      enable = true,                       -- enable highlighting
+      additional_vim_regex_highlighting = false,  -- avoid duplicate highlights
+    },
 
-  indent = { enable = true },            -- optional, for autoindent
-}
+    indent = { enable = true },            -- optional, for autoindent
+  }
+end
 
 
 -- Use virtual_lines instead of virtual_text for diagnostics
 vim.diagnostic.config({
   virtual_text = false,  -- Disable inline diagnostics
   virtual_lines = true,  -- Enable virtual_lines
+})
+
+-- Toggle diagnostic display (virtual_lines)
+vim.keymap.set('n', '<leader>e', function()
+  local current = vim.diagnostic.config()
+  vim.diagnostic.config({
+    virtual_text = false,  -- Always keep virtual_text off
+    virtual_lines = not current.virtual_lines,
+  })
+end, { desc = 'Toggle diagnostic virtual_lines' })
+
+
+-- Zig Customizations
+vim.api.nvim_create_autocmd('BufWritePre',{
+  pattern = {"*.zig", "*.zon"},
+  callback = function(ev)
+    vim.lsp.buf.code_action({
+      context = { only = { "source.organizeImports" } },
+      apply = true,
+    })
+  end
 })
 
 -- GameZoea test creation command
