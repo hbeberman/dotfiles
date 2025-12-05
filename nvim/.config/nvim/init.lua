@@ -97,6 +97,7 @@ require('pckr').add{
   "mrcjkb/rustaceanvim",
   "mfussenegger/nvim-dap",
   "nvim-treesitter/nvim-treesitter",
+  "ntpeters/vim-better-whitespace",
 }
 
 -- Mason Setup
@@ -114,6 +115,14 @@ require("mason").setup({
 require("mason-lspconfig").setup({
   automatic_installation = false,
 })
+
+-- Make trailing whitespace very apparent
+vim.g.better_whitespace_enabled = 1
+vim.g.better_whitespace_ctermcolor = 'red'
+vim.g.better_whitespace_guicolor = '#ff0000'
+vim.g.strip_whitespace_on_save = 0
+vim.g.strip_whitespace_confirm = 1
+vim.g.better_whitespace_skip_empty_lines = 1
 
 -- Rust tool setup
 vim.g.rustaceanvim = {
@@ -271,3 +280,4 @@ vim.api.nvim_create_user_command("GBopcode", function(opts)
   -- Move cursor to after the inserted block
   vim.api.nvim_win_set_cursor(0, { row + #lines, 0 })
 end, { nargs = 1 })
+
