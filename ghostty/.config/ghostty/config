@@ -11,3 +11,7 @@ click-repeat-interval = 500
 gtk-single-instance = false
 auto-update-channel = tip
 mouse-scroll-multiplier = 1
+font-feature = -dlig
+font-feature = -liga
+font-feature = -calt
+
