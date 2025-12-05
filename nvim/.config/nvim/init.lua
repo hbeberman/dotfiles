@@ -216,11 +216,11 @@ if vim.lsp.config then
   -- Enable zls globally
   vim.lsp.enable('zls')
 
-  -- Format on save for Zig files
+  -- Format on save for Zig files (organize imports disabled to prevent flicker)
   vim.api.nvim_create_autocmd('BufWritePre', {
     pattern = {"*.zig", "*.zon"},
-    callback = function()
-      vim.lsp.buf.format()
+    callback = function(ev)
+      vim.lsp.buf.format({ bufnr = ev.buf, timeout_ms = 1000 })
     end
   })
 else
@@ -236,11 +236,11 @@ else
       -- }
     })
 
-    -- Format on save for Zig files
+    -- Format on save for Zig files (organize imports disabled to prevent flicker)
     vim.api.nvim_create_autocmd('BufWritePre', {
       pattern = {"*.zig", "*.zon"},
-      callback = function()
-        vim.lsp.buf.format()
+      callback = function(ev)
+        vim.lsp.buf.format({ bufnr = ev.buf, timeout_ms = 1000 })
       end
     })
   end
@@ -291,17 +291,6 @@ vim.keymap.set('n', '<leader>e', function()
   })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
-
--- Zig Customizations
-vim.api.nvim_create_autocmd('BufWritePre',{
-  pattern = {"*.zig", "*.zon"},
-  callback = function(ev)
-    vim.lsp.buf.code_action({
-      context = { only = { "source.organizeImports" } },
-      apply = true,
-    })
-  end
-})
 
 -- GameZoea test creation command
 vim.api.nvim_create_user_command("GBtest", function(opts)
