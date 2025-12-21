@@ -3,6 +3,7 @@
     font-size: 11pt;
     background-color: rgba(0, 0, 0, 0.0);
     color: rgba(0xFF, 0xFF, 0xFF, 0.4);
+    min-height: 0;
 }
 
 window#waybar {
@@ -186,8 +187,8 @@ label:focus {
     background-color: rgba(0, 0, 0, 0.0);
     color: rgba(0xFF, 0xFF, 0xFF, 0.4);
     border-radius: 8px;
-    padding: 8px 8px;
-    font-size: 12px;
+    padding: 3px 8px;
+    font-size: 11px;
 }
 
 #custom-notification {
