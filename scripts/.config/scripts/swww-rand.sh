@@ -2,7 +2,11 @@
 set -euo pipefail
 
 # Directory with wallpapers
-WALLPAPER_DIR="$HOME/.config/wallpapers/misc"
+if [ -d "$HOME/.config/work" ]; then
+    WALLPAPER_DIR="$HOME/.config/wallpapers/work"
+else
+    WALLPAPER_DIR="$HOME/.config/wallpapers/misc"
+fi
 
 # --- Detect the correct Wayland display from the running swww-daemon ---
 SOCKET_DIR="/run/user/$UID"
