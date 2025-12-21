@@ -1,14 +1,26 @@
 * {
+    /* Primary font settings */
     font-family: "PowerlineSymbols";
-    font-size: 9pt;
+    font-size: 11pt;
+    /* Primary element coloring */
     background-color: rgba(0, 0, 0, 0.0);
-    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
+    color: rgba(0xFF, 0xFF, 0xFF, 0.8);
+}
+
+/* Primary accent color */
+.module:hover {
+    background-color: rgba(190, 86, 131, 0.4);
+}
+
+/* Set a global padding for all modules */
+.module {
+    border-radius: 8px;
+    padding: 0px 8px;
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-bottom: 0px solid rgba(100, 114, 125, 0.2);
-    color: #ffffff;
+    /* Mostly dark global black background */
+    background-color: rgba(0, 0, 0, 0.8);
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -16,15 +28,6 @@ window#waybar {
 window#waybar.hidden {
     opacity: 0.2;
 }
-
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
 
 window#waybar.termite {
     background-color: #3F3F3F;
@@ -43,100 +46,6 @@ button {
     border-radius: 0;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-
-#workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
-}
-
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#workspaces button.active {
-    background-color: rgba(0x6C,0x47,0x91,0.4);
-}
-
-#workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-
-#mode {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#power-profiles-daemon,
-#mpd {
-    background-color: rgba(0, 0, 0, 0.0);
-    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
-    padding: 0 10px;
-}
-
-#window,
-#workspaces {
-    margin: 0 4px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-
-#clock {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 4px 8px;
-}
-
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-
-#power-profiles-daemon {
-    padding-right: 15px;
-}
-
 #power-profiles-daemon.performance {
     background-color: #f53c3c;
     color: #ffffff;
@@ -152,26 +61,29 @@ button:hover {
     color: #000000;
 }
 
-label:focus {
-    background-color: #000000;
-}
-
+/* Orange accent color for idle_inhibitor active */
 #idle_inhibitor.activated {
-    background-color: rgba(0x6C,0x47,0x91,0.4);
-    color: #2d3436;
+    background-color: rgba(255,148,112,0.4);
 }
 
-#pulseaudio:hover,
-#clock:hover,
-#tray:hover,
-#custom-overview:hover{
-    background-color: rgba(0x6C,0x47,0x91,0.4);
+#idle_inhibitor.activated:hover {
+    background-color: rgba(255,148,112,0.4);
 }
 
+/* Red accent color for power */
+#custom-power:hover{
+    background-color: rgba(130, 0, 1, 1);
+}
+
+/* Dim red accent color for power */
 #pulseaudio.muted {
-    background-color: rgba(130, 0, 1, 0.2);
+    background-color: rgba(130, 0, 1, 0.4);
 }
 
+/* Tray color/effect controls */
+#tray > * {
+  opacity: 0.8
+}
 
 #tray > .passive {
     -gtk-icon-effect: dim;
@@ -182,76 +94,33 @@ label:focus {
     background-color: #eb4d4b;
 }
 
+/* Custom overview buttom */
 #custom-overview {
-    background-color: rgba(0, 0, 0, 0.0);
-    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
     border-radius: 8px;
-    padding: 8px 8px;
-    font-size: 12px;
+    padding: 3px 8px;
 }
 
+/* Custom notification center */
 #custom-notification {
     background-color: rgba(0, 0, 0, 0.0);
-    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
     min-width: 100px;
 }
 
+/* Red notification unread count */
 #custom-notification.unread {
-    background-color: rgba(0x78, 0x60, 0xA0, 0.5);
-    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
+    background-color: rgba(100, 0, 0, 0.8);
 }
 
+/* No background if no notifications */
 #custom-notification.none {
-    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
 }
 
-
-#tray,#idle_inhibitor,#cpu,#memory,#disk,#clock,#pulseaudio  {
-    background-color: rgba(0, 0, 0, 0.0);
-    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
-    border-radius: 8px;
-    padding: 0px 8px;
+/* Custom power pad from right */
+#custom-power {
+    padding: 3px 3px;
 }
 
-#tray > * {
-  opacity: 0.4
-}
-
-#window {
-    background-color: rgba(0, 0, 0, 0.0);
-    color: #ffffff;
-    border-radius: 8px;
-    padding: 0px 8px;
-}
-
-
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
-}
-
-#custom-media {
-    background-color: rgba(0, 0, 0, 0.0);
-    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
-    min-width: 100px;
-}
-
-
-#custom-media.custom-spotify {
-    background-color: rgba(0, 0, 0, 0.0);
-    color: rgba(0xFF, 0xFF, 0xFF, 0.4);
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-
-
+/* Media player status controls */
 #mpd {
     background-color: rgba(0, 0, 0, 0.0);
     color: rgba(0xFF, 0xFF, 0xFF, 0.4);
@@ -270,57 +139,4 @@ label:focus {
 #mpd.paused {
     background-color: rgba(0, 0, 0, 0.0);
     color: rgba(0xFF, 0xFF, 0xFF, 0.4);
-}
-
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-	background-color: transparent;
-}
-
-#privacy {
-    padding: 0;
-}
-
-#privacy-item {
-    padding: 0 5px;
-    color: white;
-}
-
-#privacy-item.screenshare {
-    background-color: #cf5700;
-}
-
-#privacy-item.audio-in {
-    background-color: #1ca000;
-}
-
-#privacy-item.audio-out {
-    background-color: #0069d4;
 }
