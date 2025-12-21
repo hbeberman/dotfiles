@@ -41,7 +41,7 @@
     "custom/notification":{
         "return-type": "json",
         "format": "{}",
-        "exec": "/home/henry/.local/bin/notifications.sh",
+        "exec": "/home/henry/.config/scripts/notifications.sh",
         "on-click": "sleep 0.1; swaync-client -t -sw",
         "on-click-right": "swaync-client -C",
         "interval": 2
