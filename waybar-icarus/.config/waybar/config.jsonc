@@ -54,7 +54,7 @@
 	      "format": "{player_icon} {title} == {artist}",
 	      "format-paused": "{status_icon} <i> {title} == {artist} </i>",
 	      "player-icons": {
-		        "default": "󰐊"
+            "default": "󰐊"
 	      },
 	      "status-icons": {
             "paused": "󰏤"
@@ -97,8 +97,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "󰒳",
+            "deactivated": "󰒲"
         }
     },
     "battery": {
