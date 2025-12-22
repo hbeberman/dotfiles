@@ -97,9 +97,9 @@
         // }
     },
     "network": {
-        "format-wifi": "󰖩",
-        "format-ethernet": "󰈀",
-        "format-disconnected": "󰤯",
+        "format-wifi": "󰖩 ",
+        "format-ethernet": "󰈀 ",
+        "format-disconnected": "󰤯 ",
         "tooltip-format": "Interface: {ifname}\nIP: {ipaddr}\nGateway: {gwaddr}\nNetmask: {netmask}",
         "tooltip-format-wifi": "SSID: {essid}\nSignal: {signalStrength}%\nFreq: {frequency}MHz\nIP: {ipaddr}",
         "on-click": "nm-connection-editor"
@@ -107,8 +107,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "󰒳",
-            "deactivated": "󰒲"
+            "activated": "󰒳 ",
+            "deactivated": "󰒲 "
         }
     },
     "battery": {
