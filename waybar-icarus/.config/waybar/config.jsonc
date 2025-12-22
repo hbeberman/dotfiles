@@ -35,7 +35,7 @@
     ],
     // ========== modules-left ==========
     "custom/overview": {
-        "format": "🝶",
+        "format": "󰕮",
         "escape": true,
         "tooltip": false,
         "on-click": "niri msg action open-overview"
@@ -54,26 +54,26 @@
 	      "format": "{player_icon} {title} == {artist}",
 	      "format-paused": "{status_icon} <i> {title} == {artist} </i>",
 	      "player-icons": {
-		     "default": "▶"
+		        "default": "󰐊"
 	      },
 	      "status-icons": {
-    		  "paused": "⏸"
+            "paused": "󰏤"
 	      },
         "on-click": "~/.config/scripts/focus_spotify.sh"
       	//"ignored-players": ["firefox"]
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "vol {volume}% ",
+        "scroll-step": -1, // %, can be a float
+        "format": "{icon}  {volume}% ",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "vol muted",
+        "format-muted": "󰝟 muted",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "󱡏",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
