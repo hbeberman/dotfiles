@@ -20,6 +20,7 @@
     "modules-right": [
         // media player status
         "mpris",
+        "network",
         // volume and sound device panel
         "pulseaudio",
         // clock and calendar
@@ -110,8 +111,7 @@
         },
         "events": {
             "on-discharging-warning": "notify-send -u normal 'Low Battery'",
-            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
-            "on-charging-100": "notify-send -u normal 'Battery Full!'"
+            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'"
         },
         "format": "{icon} {capacity}% ",
         "format-charging": "󰚥 {capacity}%",
