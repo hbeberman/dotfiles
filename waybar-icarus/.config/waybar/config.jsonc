@@ -63,7 +63,8 @@
       	//"ignored-players": ["firefox"]
     },
     "pulseaudio": {
-        "scroll-step": -1, // %, can be a float
+        "scroll-step": 0.6, // %
+        "reverse-scrolling": true,
         "format": "{icon}  {volume}% ",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
@@ -85,7 +86,6 @@
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format": "{:%m/%d %H:%M}",
-        "format-alt": "{:%Y-%m-%d}"
     },
     "tray": {
         // "icon-size": 21,
