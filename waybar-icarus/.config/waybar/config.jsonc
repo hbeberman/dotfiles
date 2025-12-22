@@ -20,13 +20,14 @@
     "modules-right": [
         // media player status
         "mpris",
-        "network",
         // volume and sound device panel
         "pulseaudio",
         // clock and calendar
         "clock",
         // app tray
         "tray",
+        // network adapter status and settings
+        "network",
         // click toggle to prevent sleep
         "idle_inhibitor",
         // battery status
@@ -86,7 +87,7 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%m/%d %H:%M}",
+        "format": "{:%m/%d %H:%M}"
     },
     "tray": {
         // "icon-size": 21,
@@ -94,6 +95,14 @@
         // "icons": {
         //   "blueman": "bluetooth",
         // }
+    },
+    "network": {
+        "format-wifi": "󰖩",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤯",
+        "tooltip-format": "Interface: {ifname}\nIP: {ipaddr}\nGateway: {gwaddr}\nNetmask: {netmask}",
+        "tooltip-format-wifi": "SSID: {essid}\nSignal: {signalStrength}%\nFreq: {frequency}MHz\nIP: {ipaddr}",
+        "on-click": "nm-connection-editor"
     },
     "idle_inhibitor": {
         "format": "{icon}",
