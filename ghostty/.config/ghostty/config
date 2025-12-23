@@ -1,7 +1,11 @@
-font-family = Cascadia Code PL
-font-family-bold = Cascadia Code PL
-font-family-italic = Cascadia Code PL
-font-family-bold-italic = Cascadia Code PL
+font-family = CascadiaMono Nerd Font
+font-family-bold = CascadiaMono Nerd Font
+font-family-italic = CascadiaMono Nerd Font
+font-family-bold-italic = CascadiaMono Nerd Font
+#font-family = Cascadia Code PL
+#font-family-bold = Cascadia Code PL
+#font-family-italic = Cascadia Code PL
+#font-family-bold-italic = Cascadia Code PL
 background = #000000
 background-opacity = 0.8
 command = /usr/bin/fish
