@@ -1,6 +1,6 @@
 * {
     /* Primary font settings */
-    font-family: "PowerlineSymbols";
+    font-family: "CaskaydiaMono Nerd Font", "PowerlineSymbols";
     font-size: 11pt;
     /* Primary element coloring */
     background-color: rgba(0, 0, 0, 0.0);
@@ -9,13 +9,19 @@
 
 /* Primary accent color */
 .module:hover {
-    background-color: rgba(0x6C,0x47,0x91,0.4);
+    background-color: rgba(190, 86, 131, 0.4);
 }
 
 /* Set a global padding for all modules */
 .module {
     border-radius: 8px;
     padding: 0px 8px;
+}
+
+/* Center text in all modules */
+.module label {
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 window#waybar {
@@ -124,6 +130,15 @@ button {
 #mpd {
     background-color: rgba(0, 0, 0, 0.0);
     color: rgba(0xFF, 0xFF, 0xFF, 0.4);
+}
+
+/* Network module centering */
+#network {
+    min-width: 0;
+}
+
+#network label {
+    min-width: 20px;
 }
 
 #mpd.disconnected {
