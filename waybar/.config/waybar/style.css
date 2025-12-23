@@ -1,3 +1,6 @@
+/* Accent color */
+@define-color accent-color rgba(190, 86, 131, 0.4);
+
 * {
     /* Primary font settings */
     font-family: "CaskaydiaMono Nerd Font", "PowerlineSymbols";
@@ -9,7 +12,7 @@
 
 /* Primary accent color */
 .module:hover {
-    background-color: rgba(190, 86, 131, 0.4);
+    background-color: @accent-color;
 }
 
 /* Set a global padding for all modules */
@@ -154,4 +157,29 @@ button {
 #mpd.paused {
     background-color: rgba(0, 0, 0, 0.0);
     color: rgba(0xFF, 0xFF, 0xFF, 0.4);
+}
+
+/* Tooltip styling */
+tooltip {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Menu styling (power menu, etc.) */
+menu {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 8px;
+}
+
+menu menuitem {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+}
+
+menu menuitem:hover {
+    background-color: @accent-color;
 }
