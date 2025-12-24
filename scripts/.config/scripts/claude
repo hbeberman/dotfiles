@@ -1,0 +1,11 @@
+#!/bin/bash
+# Claude launcher - only runs when work mode is inactive
+
+WORK_FILE="$HOME/.config/work/active"
+
+if [ -f "$WORK_FILE" ]; then
+    echo "Claude is not available when work mode is active"
+    exit 1
+else
+    exec /home/henry/.local/bin/claude "$@"
+fi

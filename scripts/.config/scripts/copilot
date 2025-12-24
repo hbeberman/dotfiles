@@ -1,0 +1,11 @@
+#!/bin/bash
+# Copilot launcher - only runs when work mode is active
+
+WORK_FILE="$HOME/.config/work/active"
+
+if [ -f "$WORK_FILE" ]; then
+    exec /home/henry/.local/bin/copilot "$@"
+else
+    echo "Copilot is only available when work mode is active"
+    exit 1
+fi
