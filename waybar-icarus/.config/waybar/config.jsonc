@@ -30,6 +30,8 @@
         "network",
         // click toggle to prevent sleep
         "idle_inhibitor",
+        // work mode toggle
+        "custom/work",
         // battery status
         "battery",
         // power settings
@@ -142,5 +144,13 @@
 			    "suspend": "systemctl suspend",
 			    "hibernate": "systemctl hibernate"
 		    }
+    },
+    "custom/work": {
+        "return-type": "json",
+        "format": "{}",
+        "exec": "$HOME/.config/scripts/work_mode.sh",
+        "on-click": "$HOME/.config/scripts/work_mode.sh toggle",
+        "interval": 2,
+        "tooltip": true
     }
 }

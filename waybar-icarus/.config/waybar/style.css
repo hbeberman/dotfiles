@@ -129,6 +129,21 @@ button {
     padding: 3px 3px;
 }
 
+/* Work mode toggle */
+#custom-work.active-normal {
+}
+
+#custom-work.active-overtime {
+    background-color: rgba(255, 165, 0, 0.6);
+}
+
+#custom-work.inactive-normal {
+}
+
+#custom-work.inactive-work-hours {
+    background-color: rgba(200, 0, 0, 0.6);
+}
+
 /* Media player status controls */
 #mpd {
     background-color: rgba(0, 0, 0, 0.0);
