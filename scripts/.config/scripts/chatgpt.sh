@@ -4,4 +4,4 @@ query=$(echo "" | fuzzel --dmenu --prompt "" --width=60 --lines=0)
 encoded_query=$(echo -n "$query" | jq -sRr @uri)
 firefox --new-tab "https://chatgpt.com/?model=auto&q=$encoded_query" &
 sleep 0.2
-niri msg action focus-window --app-id org.mozilla.firefox
+#niri msg action focus-window --app-id org.mozilla.firefox
