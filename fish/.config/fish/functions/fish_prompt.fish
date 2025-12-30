@@ -6,6 +6,7 @@ function fish_prompt
     set -l demeter (set_color -o EDDA9F)
     set -l daedalus (set_color -o BA65CD)
     set -l icarus (set_color -o BF2473)
+    set -l bacchus (set_color -o BA65CD)
     set -l white   (set_color -o FFFFFF)
     set -l reset   (set_color normal)
 
@@ -29,6 +30,8 @@ function fish_prompt
                 set -g __delim_col $daedalus
             case icarus
                 set -g __delim_col $icarus
+            case bacchus
+                set -g __delim_col $bacchus
             case '*'
                 set -g __delim_col $white
         end
